@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Reporting - Internal Services Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            text-align: right;
+            color: #1e3a8a;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* Service Box Component */
+        .service-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .service-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .service-box.notice-box {
+            background-color: #eff6ff;
+            border-left: 4px solid #1e3a8a;
+            cursor: default;
+        }
+
+        .service-box.notice-box:hover {
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+
+        .service-subtitle {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* Grid Layout */
+        .auth-notice {
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .header h1 {
+                text-align: center;
+                font-size: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .service-box {
+                padding: 20px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-large {
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Tap Reporting</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Authentication Notice -->
+        <section class="auth-notice">
+            <div class="service-box notice-box">
+                <div class="service-title">Authentication Required</div>
+                <div class="service-description">
+                    All services require a Tap & Barrel Group Azure AD account to log in. 
+                    If you cannot access a service, please contact the IT department to request login credentials.
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid -->
+        <section class="services-grid">
+            <a href="#" class="service-box" onclick="handleServiceClick('RDA')">
+                <div class="service-title">RDA</div>
+                <div class="service-subtitle">Restaurant Data Analysis</div>
+                <div class="service-description">
+                    A comprehensive dashboard that integrates POS and QSR data to visualize and analyze data.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('DCR')">
+                <div class="service-title">DCR</div>
+                <div class="service-subtitle">Daily Cash Reconciliation</div>
+                <div class="service-description">
+                    A service that automatically synchronizes data from POS and Square to reconcile cash.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('Open Check Report')">
+                <div class="service-title">OCR</div>
+                <div class="service-subtitle">Open Check Report</div>
+                <div class="service-description">
+                    A tool to review checks not closed by the end of a business day.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('EDI')">
+                <div class="service-title">EDI</div>
+                <div class="service-subtitle">Electronic Data Interchange</div>
+                <div class="service-description">
+                    A service to synchronize, parse, and save GFS EDI invoices for analysis and overcharge monitoring.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('Event Reporting')">
+                <div class="service-title">EVR</div>
+                <div class="service-subtitle">Event Reporting</div>
+                <div class="service-description">
+                    A one-stop location to get receipts from all events across all locations.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('Menu Mapper')">
+                <div class="service-title">MMR</div>
+                <div class="service-subtitle">Menu Mapper</div>
+                <div class="service-description">
+                    A tool to scrape competitors' menu data and compare it with our offerings using a drag-and-drop interface.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('Menu Tracker')">
+                <div class="service-title">MTR</div>
+                <div class="service-subtitle">Menu Tracker</div>
+                <div class="service-description">
+                    A service that tracks and reports on competitors' menu changes.
+                </div>
+            </a>
+
+            <a href="#" class="service-box" onclick="handleServiceClick('Review Insights')">
+                <div class="service-title">RIR</div>
+                <div class="service-subtitle">Review Insights</div>
+                <div class="service-description">
+                    A service that synchronizes guest reviews from Google and OpenTable and provides various metrics and analysis.
+                </div>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        function handleServiceClick(serviceName) {
+            // In a real implementation, this would redirect to the actual service
+            // For now, it just shows an alert
+            alert(`Redirecting to ${serviceName}...`);
+            // Example: window.location.href = `https://${serviceName.toLowerCase()}.tap-reporting.com`;
+        }
+    </script>
+</body>
+</html>
