@@ -155,7 +155,7 @@
 
         <!-- Services Grid -->
         <section class="services-grid">
-            <a href="#" class="service-box" onclick="handleServiceClick('RDA')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://rda.culinarycopilot.com/')">
                 <div class="service-title">RDA</div>
                 <div class="service-subtitle">Restaurant Data Analysis</div>
                 <div class="service-description">
@@ -163,7 +163,7 @@
                 </div>
             </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('DCR')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://dcr.tap-reporting.com/')">
                 <div class="service-title">DCR</div>
                 <div class="service-subtitle">Daily Cash Reconciliation</div>
                 <div class="service-description">
@@ -171,7 +171,7 @@
                 </div>
             </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('Open Check Report')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://opencheckreporting.tap-reporting.com/')">
                 <div class="service-title">OCR</div>
                 <div class="service-subtitle">Open Check Report</div>
                 <div class="service-description">
@@ -179,7 +179,7 @@
                 </div>
             </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('EDI')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://edi.tap-reporting.com/')">
                 <div class="service-title">EDI</div>
                 <div class="service-subtitle">Electronic Data Interchange</div>
                 <div class="service-description">
@@ -187,7 +187,7 @@
                 </div>
             </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('Event Reporting')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://eventreporting.tap-reporting.com/')">
                 <div class="service-title">EVR</div>
                 <div class="service-subtitle">Event Reporting</div>
                 <div class="service-description">
@@ -211,7 +211,7 @@
                 </div>
             </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('Review Insights')">
+            <a href="#" class="service-box" onclick="handleServiceClick('https://reviewinsights.tap-reporting.com/')">
                 <div class="service-title">RIR</div>
                 <div class="service-subtitle">Review Insights</div>
                 <div class="service-description">
@@ -223,10 +223,8 @@
 
     <script>
         function handleServiceClick(serviceName) {
-            // In a real implementation, this would redirect to the actual service
-            // For now, it just shows an alert
-            alert(`Redirecting to ${serviceName}...`);
-            // Example: window.location.href = `https://${serviceName.toLowerCase()}.tap-reporting.com`;
+            //window.location.href = `https://${serviceName.toLowerCase()}.tap-reporting.com`;
+            window.location.href = `${serviceName.toLowerCase()}`;
         }
     </script>
 </body>
