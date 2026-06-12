@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Central hub for Tap & Barrel Group internal services, analytics, operations, and IT tools.">
     <title>Tap Reporting - Internal Services Hub</title>
+
+    <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --primary-color: #1e3a8a;
+            --primary-hover: #172554;
+            --accent-bg: #eff6ff;
+            --accent-border: #bfdbfe;
+
+            --it-bg: #fef2f2;
+            --it-text: #991b1b;
+            --it-border: #fca5a5;
+
+            --backend-bg: #f0fdf4;
+            --backend-text: #166534;
+            --backend-border: #86efac;
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,95 +47,170 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Header */
         .header {
-            background-color: #fff;
-            border-bottom: 1px solid #e9ecef;
-            padding: 20px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0;
             margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header h1 {
-            text-align: right;
-            color: #1e3a8a;
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary-color);
             font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .header-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Authentication Notice */
+        .auth-notice {
+            margin-bottom: 40px;
+        }
+
+        .notice-box {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .notice-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
             font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .notice-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 48px;
+        }
+
+        .category-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
 
         /* Service Box Component */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
         .service-box {
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             height: 100%;
         }
 
         .service-box:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            text-decoration: none;
-            color: inherit;
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
-        .service-box.notice-box {
-            background-color: #eff6ff;
-            border-left: 4px solid #1e3a8a;
-            cursor: default;
+        .service-box.it-only:hover {
+            border-color: var(--it-border);
         }
 
-        .service-box.notice-box:hover {
-            transform: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .service-box.backend-service:hover {
+            border-color: var(--backend-border);
+        }
+
+        .service-info {
+            margin-bottom: 16px;
         }
 
         .service-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e3a8a;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
             margin-bottom: 8px;
-        }
-
-        .service-subtitle {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #4b5563;
-            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .service-description {
-            font-size: 0.9rem;
-            color: #6b7280;
-            line-height: 1.5;
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
-        /* Grid Layout */
-        .auth-notice {
-            margin-bottom: 40px;
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
+        .badge-it {
+            background-color: var(--it-bg);
+            color: var(--it-text);
+            border: 1px solid var(--it-border);
+        }
+
+        .badge-backend {
+            background-color: var(--backend-bg);
+            color: var(--backend-text);
+            border: 1px solid var(--backend-border);
         }
 
         /* Responsive Design */
@@ -109,9 +219,24 @@
                 padding: 0 16px;
             }
 
-            .header h1 {
+            .header {
+                padding: 20px 0;
+                margin-bottom: 24px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 8px;
                 text-align: center;
-                font-size: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .category-title {
+                font-size: 1.35rem;
+                margin-bottom: 16px;
             }
 
             .services-grid {
@@ -123,190 +248,280 @@
                 padding: 20px;
             }
         }
-
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-large {
-            margin-bottom: 32px;
-        }
     </style>
 </head>
+
 <body>
     <header class="header">
-        <div class="container">
+        <div class="container header-content">
             <h1>Tap Reporting</h1>
+            <span class="header-subtitle">Internal Services Hub</span>
         </div>
     </header>
 
     <main class="container">
         <!-- Authentication Notice -->
         <section class="auth-notice">
-            <div class="service-box notice-box">
-                <div class="service-title">Authentication Required</div>
-                <div class="service-description">
-                    All services require a Tap & Barrel Group Azure AD account to log in. 
+            <div class="notice-box">
+                <div class="notice-title">Authentication Required</div>
+                <div class="notice-description">
+                    All services require a Tap & Barrel Group Azure AD account to log in.
                     If you cannot access a service, please contact the IT department to request login credentials.
                 </div>
             </div>
         </section>
 
-        <!-- Services Grid -->
-        <section class="services-grid">
-            <a href="#" class="service-box" onclick="handleServiceClick('https://rda.tap-reporting.com')">
-                <div class="service-title">Restaurant Data Analysis</div>
-                <div class="service-description">
-                    A dashboard that integrates and visualize POS, QSR, GFS, Reviews data.
-                </div>
-            </a>
+        <!-- Category: Analytics & Insights -->
+        <section class="category-section">
+            <h2 class="category-title" id="sec-analytics">Analytics & Insights</h2>
+            <div class="services-grid">
+                <a href="#" id="service-rda" class="service-box"
+                    onclick="handleServiceClick('https://rda.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">Restaurant Data Analysis</div>
+                        <div class="service-description">
+                            A dashboard that integrates and visualizes POS, QSR, GFS, and Reviews data.
+                        </div>
+                    </div>
+                </a>
 
+                <a href="#" id="service-kitchen-insights" class="service-box"
+                    onclick="handleServiceClick('https://kitcheninsights.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Kitchen Insights</div>
+                        <div class="service-description">
+                            A service that automatically retrieves, consolidates, visualizes, and analyzes QSR data.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://kitcheninsights.tap-reporting.com/')">
-                <div class="service-title">Kitchen Insights</div>
-                <div class="service-description">
-                    A service that automatically retrieves, consolidates, visualizes, and analyzes QSR data.
-                </div>
-            </a>
-            
-            <a href="#" class="service-box" onclick="handleServiceClick('https://dcr.tap-reporting.com/')">
-                <div class="service-title">Daily Cash Reconciliation</div>
-                <div class="service-description">
-                    A service that automatically synchronizes data from POS and Square to reconcile cash.
-                </div>
-            </a>
+                <a href="#" id="service-review-insights" class="service-box"
+                    onclick="handleServiceClick('https://reviewinsights.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Review Insights</div>
+                        <div class="service-description">
+                            A service that synchronizes guest reviews from Google and OpenTable and provides various
+                            metrics and analysis.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://opencheckreporting.tap-reporting.com/')">
-                <div class="service-title">Open Check Report</div>
-                <div class="service-description">
-                    A tool to review checks not closed by the end of a business day.
-                </div>
-            </a>
+                <a href="#" id="service-menu-mapper" class="service-box"
+                    onclick="handleServiceClick('https://menumapper.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">Menu Mapper</div>
+                        <div class="service-description">
+                            A tool to scrape competitors' menu data and compare it with our offerings using a
+                            drag-and-drop interface.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://ocautomation.tap-reporting.com/')">
-                <div class="service-title">OC Automation</div>
-                <div class="service-description">
-                    Automate COGS retrieval from Optimum Control to calculate gross profit for menu engineering.
-                </div>
-            </a>
-            
-            
-            <a href="#" class="service-box" onclick="handleServiceClick('https://edi.tap-reporting.com/')">
-                <div class="service-title">EDI</div>
-                <div class="service-description">
-                    A service to synchronize, parse, and save GFS EDI invoices for analysis and overcharge monitoring.
-                </div>
-            </a>
+                <a href="#" id="service-tripleseat" class="service-box backend-service"
+                    onclick="handleServiceClick('https://tripleseat.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>TripleSeat Integration</span>
+                        </div>
+                        <div class="service-description">
+                            Backend services to retrieve TripleSeat data and integrate with Event Reporting.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://eventreporting.tap-reporting.com/')">
-                <div class="service-title">Event Reporting</div>
-                <div class="service-description">
-                    A one-stop location to get receipts from all events across all locations.
-                </div>
-            </a>
+        <!-- Category: Operations & Guest Services -->
+        <section class="category-section">
+            <h2 class="category-title" id="sec-operations">Operations & Guest Services</h2>
+            <div class="services-grid">
+                <a href="#" id="service-open-check" class="service-box"
+                    onclick="handleServiceClick('https://opencheckreporting.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Open Check Report</div>
+                        <div class="service-description">
+                            A tool to review checks not closed by the end of a business day.
+                        </div>
+                    </div>
+                </a>
 
+                <a href="#" id="service-event-reporting" class="service-box"
+                    onclick="handleServiceClick('https://eventreporting.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Event Reporting</div>
+                        <div class="service-description">
+                            A one-stop location to get receipts from all events across all locations.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://checkreporting.tap-reporting.com/')">
-                <div class="service-title">Check Reporting</div>
-                <div class="service-description">
-                    Search checks (by payment, promo, menu item) across all locations; individual check lookup; live open check search, etc.
-                </div>
-            </a>
-            
-            <a href="#" class="service-box" onclick="handleServiceClick('https://discountcard.tap-reporting.com')">
-                <div class="service-title">Discount Card Usage</div>
-                <div class="service-description">
-                    Automatically retrive and track Squirrel discount card usage across locations.
-                </div>
-            </a>
+                <a href="#" id="service-check-reporting" class="service-box"
+                    onclick="handleServiceClick('https://checkreporting.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Check Reporting</div>
+                        <div class="service-description">
+                            Search checks (by payment, promo, menu item) across all locations; individual check lookup;
+                            live open check search.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://prepbatch.tap-reporting.com')">
-                <div class="service-title">Prep Batch</div>
-                <div class="service-description">
-                    A recipe prep tool that pulls your recipes from Fourth and lets you view ingredients, steps, and portion sizes in one place — with search, category filters, and batch multipliers.
-                </div>
-            </a>
-          
-            <a href="#" class="service-box" onclick="handleServiceClick('https://menumapper.tap-reporting.com')">
-                <div class="service-title">Menu Mapper</div>
-                <div class="service-description">
-                    A tool to scrape competitors' menu data and compare it with our offerings using a drag-and-drop interface.
-                </div>
-            </a>
+                <a href="#" id="service-discount-card" class="service-box"
+                    onclick="handleServiceClick('https://discountcard.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">Discount Card Usage</div>
+                        <div class="service-description">
+                            Automatically retrieve and track Squirrel discount card usage across locations.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://reviewinsights.tap-reporting.com/')">
-                <div class="service-title">Review Insights</div>
-                <div class="service-description">
-                    A service that synchronizes guest reviews from Google and OpenTable and provides various metrics and analysis.
-                </div>
-            </a>
+                <a href="#" id="service-prep-batch" class="service-box"
+                    onclick="handleServiceClick('https://prepbatch.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">Prep Batch</div>
+                        <div class="service-description">
+                            A recipe prep tool that pulls recipes from Fourth to view ingredients, steps, and portion
+                            sizes with search, filter and quantity multiplier.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://screenbumper.tap-reporting.com')">
-                <div class="service-title">Stuck Item Bumper</div>
-                <div class="service-description">
-                    Bump off stuck QSR items from QSR screen remotely from a central dashboard. IT ONLY.
-                </div>
-            </a>
+                <a href="#" id="service-easy-signout" class="service-box"
+                    onclick="handleServiceClick('https://tab.easysignout.com')">
+                    <div class="service-info">
+                        <div class="service-title">Easy Sign Out</div>
+                        <div class="service-description">
+                            iPad sign in & sign out made easy.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://posrecure.tap-reporting.com')">
-                <div class="service-title">POS Services Restart</div>
-                <div class="service-description">
-                    Restart selected Squirrel or XPO services remotely from a central dashboard. IT ONLY.
-                </div>
-            </a>
+                <a href="#" id="service-pos-user" class="service-box"
+                    onclick="handleServiceClick('https://posuser.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">Create POS User</div>
+                        <div class="service-description">
+                            Centralized POS user creation with unique employee number company-wide.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://tab.easysignout.com')">
-                <div class="service-title">Easy Sign Out</div>
-                <div class="service-description">
-                    iPad sign in & sign out made easy
-                </div>
-            </a>
+        <!-- Category: Financial & Cost Control -->
+        <section class="category-section">
+            <h2 class="category-title" id="sec-financial">Financial & Cost Control</h2>
+            <div class="services-grid">
+                <a href="#" id="service-dcr" class="service-box"
+                    onclick="handleServiceClick('https://dcr.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">Daily Cash Reconciliation</div>
+                        <div class="service-description">
+                            A service that automatically synchronizes data from POS and Square to reconcile cash.
+                        </div>
+                    </div>
+                </a>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://posuser.tap-reporting.com')">
-                <div class="service-title">Create POS user</div>
-                <div class="service-description">
-                    Centralized POS user creation with unique employee number company wide
-                </div>
-            </a>
+                <a href="#" id="service-oc-automation" class="service-box"
+                    onclick="handleServiceClick('https://ocautomation.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">OC Automation</div>
+                        <div class="service-description">
+                            Automate COGS retrieval from Optimum Control to calculate gross profit for menu engineering.
+                        </div>
+                    </div>
+                </a>
 
+                <a href="#" id="service-edi" class="service-box"
+                    onclick="handleServiceClick('https://edi.tap-reporting.com/')">
+                    <div class="service-info">
+                        <div class="service-title">EDI</div>
+                        <div class="service-description">
+                            A service to synchronize, parse, and save GFS EDI invoices for analysis and overcharge
+                            monitoring.
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-            <a href="#" class="service-box" onclick="handleServiceClick('https://ipadreboot.tap-reporting.com')">
-                <div class="service-title">iPad Reboot</div>
-                <div class="service-description">
-                    Reboot POS iPads remotely from a central dashboard. IT ONLY.
-                </div>
-            </a>
-            
-            <a href="#" class="service-box" onclick="handleServiceClick('https://vmreboot.tap-reporting.com')">
-                <div class="service-title">VM Reboot</div>
-                <div class="service-description">
-                    Reboot workstation virtual machine remotely from a central dashboard. IT ONLY.
-                </div>
-            </a>
-            
-            <a href="#" class="service-box" onclick="handleServiceClick('https://tripleseat.tap-reporting.com/')">
-                <div class="service-title">TripleSeat Integration</div>
-                <div class="service-description">
-                    Backend services to retreive TripleSeat data and integrate with Event Reporting.
-                </div>
-            </a>
-            
-            <a href="#" class="service-box" onclick="#">
-                <div class="service-title">Log Monitoring</div>
-                <div class="service-description">
-                    Monitor selected log, detect concerned patterns and send alert emails. Backend service. 
-                </div>
-            </a>
-            
+        <!-- Category: IT Operations & Administration -->
+        <section class="category-section">
+            <h2 class="category-title" id="sec-it-admin">IT Operations & Administration</h2>
+            <div class="services-grid">
+                <a href="#" id="service-screen-bumper" class="service-box it-only"
+                    onclick="handleServiceClick('https://screenbumper.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>Stuck Item Bumper</span>
+                            <span class="badge badge-it">IT Only</span>
+                        </div>
+                        <div class="service-description">
+                            Bump off stuck QSR items from QSR screen remotely from a central dashboard.
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" id="service-pos-restart" class="service-box it-only"
+                    onclick="handleServiceClick('https://posrecure.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>POS Services Restart</span>
+                            <span class="badge badge-it">IT Only</span>
+                        </div>
+                        <div class="service-description">
+                            Restart selected Squirrel or XPO services remotely from a central dashboard.
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" id="service-ipad-reboot" class="service-box it-only"
+                    onclick="handleServiceClick('https://ipadreboot.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>iPad Reboot</span>
+                            <span class="badge badge-it">IT Only</span>
+                        </div>
+                        <div class="service-description">
+                            Reboot POS iPads remotely from a central dashboard.
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" id="service-vm-reboot" class="service-box it-only"
+                    onclick="handleServiceClick('https://vmreboot.tap-reporting.com')">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>VM Reboot</span>
+                            <span class="badge badge-it">IT Only</span>
+                        </div>
+                        <div class="service-description">
+                            Reboot workstation virtual machine remotely from a central dashboard.
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" id="service-log-monitoring" class="service-box backend-service" onclick="#">
+                    <div class="service-info">
+                        <div class="service-title">
+                            <span>Log Monitoring</span>
+                            <span class="badge badge-it">IT Only</span>
+                        </div>
+                        <div class="service-description">
+                            Monitor selected log, detect patterns of concern, and send alert emails.
+                        </div>
+                    </div>
+                </a>
+            </div>
         </section>
     </main>
 
     <script>
         function handleServiceClick(serviceName) {
-            //window.location.href = `https://${serviceName.toLowerCase()}.tap-reporting.com`;
             window.location.href = `${serviceName.toLowerCase()}`;
         }
     </script>
 </body>
+
 </html>
